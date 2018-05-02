@@ -1,0 +1,24 @@
+{
+  "name": "wepy-plugin-hash-filename",
+  "version": "1.0.0",
+  "description": "rename filename with hash",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hongguancheng/wepy-plugin-hash-filename.git"
+  },
+  "keywords": [
+    "hash",
+    "wepy",
+    "filename"
+  ],
+  "author": "ccg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hongguancheng/wepy-plugin-hash-filename/issues"
+  },
+  "homepage": "https://github.com/hongguancheng/wepy-plugin-hash-filename#readme"
+}
