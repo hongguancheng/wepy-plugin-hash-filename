@@ -59,7 +59,6 @@ var _class = function () {
         if (setting.replaceFilter.test(op.file)) {
             var nameReg = new RegExp("[\'\"]" + setting.fileFolder + "\/([^\'\"]*)[\'\"]", "g")
             op.code = op.code.replace(nameReg, (match, p1, offset, string) => {
-                console.log(match, p1, offset, fileList)
                 return match.replace(p1, fileList[p1])
             })
             op.next();

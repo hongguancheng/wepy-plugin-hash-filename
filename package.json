@@ -1,6 +1,6 @@
 {
   "name": "wepy-plugin-hash-filename",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "rename filename with hash",
   "main": "index.js",
   "scripts": {
