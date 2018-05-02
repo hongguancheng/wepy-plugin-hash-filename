@@ -25,11 +25,8 @@ var _class = function () {
         _classCallCheck(this, _class);
 
         var def = {
-            filter: new RegExp('\.(jpg|png|jpeg)$'),
-            config: {
-                jpg: {},
-                png: { quality: '65-80' }
-            }
+            replaceFilter: /\.(js|wxss|wxml)$/,
+            fileFolder: 'web-files'
         };
 
         this.setting = Object.assign({}, def, c);
@@ -38,9 +35,9 @@ var _class = function () {
     _class.prototype.apply = function apply(op) {
 
         var setting = this.setting;
-        var webImageReg = /\/web-images\//g;
+        var fileFolderReg = new RegExp("\/" + setting.fileFolder + "\/", "g")
 
-        if (setting.filter.test(op.file) && webImageReg.test(op.file)) {
+        if (fileFolderReg.test(op.file)) {
             op.output && op.output({
                 action: 'hash file',
                 file: op.file
@@ -52,7 +49,6 @@ var _class = function () {
 
             op.file = op.file.replace('src/', '').replace(_getExt(op.file), `${hash.substring(0, 6)}.${_getExt(op.file)}`)
             op.code = data
-            console.log(op.file);
             op.next();
 
             fileList[_getFileName(filePath)] = _getFileName(op.file)
@@ -61,12 +57,9 @@ var _class = function () {
         }
 
         if (setting.replaceFilter.test(op.file)) {
-            console.log(op.file, fileList);
-            var key = 'IMAGE_PATH'
-            var nameReg = new RegExp("[\'\"]" + key + "\/([^\'\"]*)[\'\"]", "g")
+            var nameReg = new RegExp("[\'\"]" + setting.fileFolder + "\/([^\'\"]*)[\'\"]", "g")
             op.code = op.code.replace(nameReg, (match, p1, offset, string) => {
-                console.log(match, p1, offset)
-                console.log(match.replace(p1, fileList[p1]))
+                console.log(match, p1, offset, fileList)
                 return match.replace(p1, fileList[p1])
             })
             op.next();
